@@ -1,28 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Genesis.MainPage">
-
-    <Grid RowDefinitions="100,Auto,*"
-          RowSpacing="20"
-          ColumnSpacing="10"
-          Padding="10">
-
-        <Image Source="sda_logo.png"
-               Grid.ColumnSpan="2"
-               />
-
-        <Grid RowDefinitions=".50*,.50*"
-              RowSpacing="5"
-              Grid.Row="1"
-              HeightRequest="40"
-              HorizontalOptions="Center">
-            <Label Text="Kitengela Central Church" HorizontalOptions="Center"/>
-            <Label Grid.Row="1" Text="Genesis Development Group"/>
-        </Grid>
-
-        <ScrollView
-            Grid.Row="2">
+             x:Class="Genesis.Pages.AddContribution"
+             Title="AddContribution">
+    <ScrollView>
             <VerticalStackLayout
                 Padding="10"
                 Spacing="15">
@@ -39,8 +20,6 @@
                 </Picker>
                 <Button Text="Add Contribution"/>
             </VerticalStackLayout>
-        </ScrollView>
-
-    </Grid>
+    </ScrollView>
 
 </ContentPage>

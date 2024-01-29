@@ -73,11 +73,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Pages\" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <MauiXaml Update="LogIn.xaml">
+	  <MauiXaml Update="Pages\LogIn.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\AddContribution.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
