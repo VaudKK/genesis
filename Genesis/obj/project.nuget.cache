@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "89wiw19DbWMd2wgM1NNuBAVOFEmxiQJgIWzExNBp6Qgi+kEdlrGyb/WYTKOh0CjhJV1RPj6V7xt2crOHRXrdOg==",
+  "dgSpecHash": "/fB2iFH06jvvf8JIhAwA5VA0XUnRfwH70m0zI5ESERcK02c1/7xAQ76xXfT5PT5XvCtVTHASWYPi+oTcCmekBg==",
   "success": true,
   "projectFilePath": "E:\\MAUI\\Genesis\\Genesis\\Genesis.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\HP\\.nuget\\packages\\communitytoolkit.mvvm\\8.2.2\\communitytoolkit.mvvm.8.2.2.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\googlegson\\2.10.1.4\\googlegson.2.10.1.4.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.extensions.configuration\\8.0.0\\microsoft.extensions.configuration.8.0.0.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\8.0.0\\microsoft.extensions.configuration.abstractions.8.0.0.nupkg.sha512",

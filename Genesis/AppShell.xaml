@@ -8,8 +8,8 @@
     Title="Genesis">
 
     <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+        Title="Sign In"
+        ContentTemplate="{DataTemplate local:LogIn}"
+        Route="LogIn" />
 
 </Shell>

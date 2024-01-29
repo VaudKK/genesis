@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Genesis.Service;
+using Genesis.ViewModels;
+using Microsoft.Extensions.Logging;
 
 namespace Genesis
 {
@@ -15,9 +17,16 @@ namespace Genesis
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
+            builder.Services.AddSingleton<IConnectivity>(Connectivity.Current);
+
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
+
+            builder.Services.AddSingleton<LogInService>();
+
+            builder.Services.AddSingleton<LogIn>();
+            builder.Services.AddSingleton<LoginViewModel>();
 
             return builder.Build();
         }
