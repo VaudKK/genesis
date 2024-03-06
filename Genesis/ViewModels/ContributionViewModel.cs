@@ -39,9 +39,21 @@ namespace Genesis.ViewModels
 
             IsRefreshing = true;
 
-            data.ForEach(Contributions.Add);
+            data.ForEach( value =>
+            {
+                var date = DateTimeOffset.FromUnixTimeSeconds(value.Date).DateTime;
+                value.DateString = date.ToString("ddd, dd MMM yyyy");
+                Contributions.Add(value);
+            });
 
             IsRefreshing = false;
+        }
+
+        [RelayCommand]
+        public async Task OnRefresh()
+        {
+            Contributions.Clear();
+            await GetContributions();
         }
 
     }

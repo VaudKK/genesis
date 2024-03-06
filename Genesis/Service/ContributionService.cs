@@ -23,10 +23,6 @@ namespace Genesis.Service
             var response = await _webClient.SendRequestAsync<Object,BaseDto<List<ContributionsDto>>>
                 ("https://genesis-contribution-17c0a41f1924.herokuapp.com/contributions", RestSharp.Method.Get,headers,null);
 
-            Console.WriteLine("**********************************");
-            Console.WriteLine(response);
-            Console.WriteLine("**********************************");
-
             var contributions = new BaseDto<List<ContributionsDto>>();
 
             if (response.IsSuccessStatusCode)

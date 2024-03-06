@@ -1,4 +1,6 @@
-﻿namespace Genesis.data
+﻿using System.Text.Json.Serialization;
+
+namespace Genesis.data
 {
     public class ContributionsDto
     {
@@ -7,5 +9,8 @@
         public string Phone { get; set; } = default!;
         public string PaymentMode { get; set; } = default!;
         public long Date { get; set; } = 0L;
+
+        [JsonIgnore]
+        public string DateString { get; set; } = default!; 
     }
 }

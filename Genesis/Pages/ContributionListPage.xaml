@@ -4,28 +4,26 @@
              x:Class="Genesis.Pages.ContributionListPage"
              xmlns:viewModel="clr-namespace:Genesis.ViewModels"
              xmlns:contributionModel="clr-namespace:Genesis.data"
-             x:DataType="viewModel:ContributionViewModel"
              Title="Contributions"
              NavigatedTo="ContentPage_NavigatedTo">
-    <RefreshView IsRefreshing="{Binding IsRefreshing}">
+    <RefreshView IsRefreshing="{Binding IsRefreshing}" Command="{Binding OnRefreshCommand}" Margin="30 0 0 0">
         <ScrollView Padding="10">
-            <Grid RowDefinitions="1*,1*,*" RowSpacing="10">
+            <Grid RowDefinitions="0.2*,*" RowSpacing="10">
                 <SearchBar Placeholder="Search Contributor"/>
-                <ListView ItemsSource="{Binding Contributions}">
+                <ListView ItemsSource="{Binding Contributions}" Grid.Row="1">
                     <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="{x:Type contributionModel:ContributionsDto}">
-                            <Frame Margin="10">
+                        <DataTemplate>
+                            <ViewCell>
                                 <Grid RowDefinitions=".5*,.5*"
                                       ColumnDefinitions=".7*,.3*"
                                       RowSpacing="10">
                                     <Label Text="{Binding Name}"/>
-                                    <Label Text="{Binding Date}" Grid.Column="1"
-                                           HorizontalTextAlignment="End"/>
+                                    <Label Text="{Binding DateString}" Grid.Column="1"/>
                                     <Label Text="{Binding Amount}"
                                            Grid.Row="1"
                                            Grid.Column="1"/>
                                 </Grid>
-                            </Frame>
+                            </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
