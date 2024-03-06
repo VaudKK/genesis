@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Genesis.data;
+using Genesis.Pages;
 using Genesis.Service;
 
 namespace Genesis.ViewModels
@@ -41,14 +42,17 @@ namespace Genesis.ViewModels
 
             var loginDto = new LoginDto
             {
-                identifier = Identifier,
+                identifier = Identifier.Trim(),
                 password = Password
             };
 
             IsLoginEnabled = false;
             string token = await _loginService.LogIn(loginDto);
-            if(string.IsNullOrEmpty(token))
-                await Shell.Current.DisplayAlert("Genesis","Invalid Credentials", "OK");
+
+            if (string.IsNullOrEmpty(token))
+                await Shell.Current.DisplayAlert("Genesis", "Invalid Credentials", "OK");
+            else
+                await Shell.Current.GoToAsync($"//{nameof(HomePage)}");
 
             IsLoginEnabled = true;
         }

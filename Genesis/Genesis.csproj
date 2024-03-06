@@ -70,15 +70,43 @@
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+		<PackageReference Include="RestSharp" Version="110.2.0" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Pages\LogIn.xaml">
+	  <Compile Update="Pages\AddContributionPage.xaml.cs">
+	    <DependentUpon>AddContributionPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Pages\ContributionListPage.xaml.cs">
+	    <DependentUpon>ContributionListPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Pages\LogInPage.xaml.cs">
+	    <DependentUpon>LogInPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Pages\HomePage.xaml.cs">
+	    <DependentUpon>HomePage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Pages\ContributionListPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\AddContribution.xaml">
+	  <MauiXaml Update="Pages\LogInPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\AddContributionPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="Platforms\Android\Resources\auto_backup_rules.xml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="Platforms\iOS\Entitlement.plist">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
 	</ItemGroup>
 
 </Project>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Genesis.Pages.ContributionListPage"
+             xmlns:viewModel="clr-namespace:Genesis.ViewModels"
+             xmlns:contributionModel="clr-namespace:Genesis.data"
+             x:DataType="viewModel:ContributionViewModel"
+             Title="Contributions"
+             NavigatedTo="ContentPage_NavigatedTo">
+    <RefreshView IsRefreshing="{Binding IsRefreshing}">
+        <ScrollView Padding="10">
+            <Grid RowDefinitions="1*,1*,*" RowSpacing="10">
+                <SearchBar Placeholder="Search Contributor"/>
+                <ListView ItemsSource="{Binding Contributions}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="{x:Type contributionModel:ContributionsDto}">
+                            <Frame Margin="10">
+                                <Grid RowDefinitions=".5*,.5*"
+                                      ColumnDefinitions=".7*,.3*"
+                                      RowSpacing="10">
+                                    <Label Text="{Binding Name}"/>
+                                    <Label Text="{Binding Date}" Grid.Column="1"
+                                           HorizontalTextAlignment="End"/>
+                                    <Label Text="{Binding Amount}"
+                                           Grid.Row="1"
+                                           Grid.Column="1"/>
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </ScrollView>
+    </RefreshView>
+</ContentPage>

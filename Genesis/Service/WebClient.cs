@@ -1,47 +1,34 @@
-﻿using Genesis.converters;
-using System;
-using System.Net.Http.Headers;
-using System.Text;
+﻿using RestSharp;
 using System.Text.Json;
 
 namespace Genesis.Service
 {
     public class WebClient
     {
-        readonly HttpClient _httpClient;
-        readonly JsonSerializerOptions _serializerOptions;
-
-        public JsonSerializerOptions SerializerOptions
-        {
-            get { return _serializerOptions; }
-        }
+        readonly RestClient _httpClient;
 
         public WebClient()
         {
-            _httpClient = new HttpClient();
-            _serializerOptions = new JsonSerializerOptions
-            {
-                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-                WriteIndented = true,
-                NumberHandling = System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString,
-                Converters =
-                {
-                    new IntConverter(),
-                }
-            };
+            _httpClient = new RestClient();
         }
 
-        public Task<HttpResponseMessage> SendRequestAsync(string url,HttpMethod httpMethod, string data)
+        public async Task<RestResponse<R>> SendRequestAsync<T,R>(string url,Method httpMethod, Dictionary<String,String>? headers, T? data)
         {
-            var httpMessage = new HttpRequestMessage
-            {
-                RequestUri = new Uri(url),
-                Method = httpMethod,
-                Content = new StringContent(data,Encoding.UTF8,"application/json"),
-            };
+            var request = new RestRequest(url);
+            request.Method = httpMethod;
 
-            return _httpClient
-                .SendAsync(httpMessage);
+            if(headers != null && headers.Count > 0)
+            {
+                foreach(var key in headers.Keys)
+                {
+                    request.AddHeader(key, headers[key]);
+                }
+            }
+
+            if(data != null ) { request.AddJsonBody(JsonSerializer.Serialize(data)); }
+
+            return await _httpClient.ExecuteAsync<R>(request);
+            
         }
     }
 }

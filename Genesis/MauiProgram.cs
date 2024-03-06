@@ -1,4 +1,5 @@
-﻿using Genesis.Service;
+﻿using Genesis.Pages;
+using Genesis.Service;
 using Genesis.ViewModels;
 using Microsoft.Extensions.Logging;
 
@@ -24,9 +25,17 @@ namespace Genesis
 #endif
 
             builder.Services.AddSingleton<LogInService>();
+            builder.Services.AddSingleton<ContributionService>();
 
-            builder.Services.AddSingleton<LogIn>();
+            builder.Services.AddSingleton<LogInPage>();
             builder.Services.AddSingleton<LoginViewModel>();
+
+
+            builder.Services.AddSingleton<ContributionListPage>();
+            builder.Services.AddSingleton<ContributionViewModel>();
+
+            builder.Services.AddSingleton<ISecureStorageService, SecureStorageService>();
+
 
             return builder.Build();
         }

@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Genesis.Pages.AddContribution"
+             x:Class="Genesis.Pages.AddContributionPage"
              Title="AddContribution">
-    <ScrollView>
+    <ScrollView Padding="10">
             <VerticalStackLayout
                 Padding="10"
                 Spacing="15">
                 <Entry Placeholder="Name" MaxLength="20"/>
                 <Entry Placeholder="Amount" MaxLength="9" Keyboard="Numeric"/>
+                <Entry Placeholder="Phone Number" MaxLength="12" Keyboard="Telephone"/>
                 <DatePicker MinimumDate="01/01/2022"/>
                 <Picker Title="Select Payment Mode">
                     <Picker.ItemsSource>
