@@ -6,28 +6,39 @@
              xmlns:contributionModel="clr-namespace:Genesis.data"
              Title="Contributions"
              NavigatedTo="ContentPage_NavigatedTo">
-    <RefreshView IsRefreshing="{Binding IsRefreshing}" Command="{Binding OnRefreshCommand}" Margin="30 0 0 0">
-        <ScrollView Padding="10">
-            <Grid RowDefinitions="0.2*,*" RowSpacing="10">
+            <Grid RowDefinitions="0.2*,*" RowSpacing="10" Padding="10">
                 <SearchBar Placeholder="Search Contributor"/>
-                <ListView ItemsSource="{Binding Contributions}" Grid.Row="1">
+                <ListView ItemsSource="{Binding Contributions}"
+                          IsPullToRefreshEnabled="True"
+                          IsRefreshing="{Binding IsRefreshing}"
+                          RefreshCommand="{Binding ReloadCommand}"
+                          HasUnevenRows="True"
+                          Grid.Row="1">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <ViewCell>
+                            <ViewCell Height="200">
                                 <Grid RowDefinitions=".5*,.5*"
-                                      ColumnDefinitions=".7*,.3*"
-                                      RowSpacing="10">
-                                    <Label Text="{Binding Name}"/>
-                                    <Label Text="{Binding DateString}" Grid.Column="1"/>
+                                              ColumnDefinitions=".3*,.4*,.3*"
+                                              RowSpacing="10"
+                                              Padding="5">
+                            <Image Source="contribution.png"
+                                   WidthRequest="30"
+                                   HeightRequest="30"
+                                   Grid.RowSpan="2"
+                                   VerticalOptions="Center"/>
+                            <Label Text="{Binding Name}"
+                                   Grid.Column="1"
+                                   Grid.RowSpan="2"
+                                   VerticalOptions="Center"
+                                   FontAttributes="Bold"/>
+                                    <Label Text="{Binding DateString}" Grid.Column="2"/>
                                     <Label Text="{Binding Amount}"
-                                           Grid.Row="1"
-                                           Grid.Column="1"/>
+                                                   Grid.Row="1"
+                                                   Grid.Column="2"/>
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
             </Grid>
-        </ScrollView>
-    </RefreshView>
 </ContentPage>

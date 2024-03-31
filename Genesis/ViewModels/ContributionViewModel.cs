@@ -15,6 +15,21 @@ namespace Genesis.ViewModels
         [ObservableProperty]
         private bool isRefreshing = false;
 
+        [ObservableProperty]
+        private string name = "";
+
+        [ObservableProperty]
+        private float amount = 0.00f;
+
+        [ObservableProperty]
+        private string phone = "";
+
+        [ObservableProperty]
+        private string paymentMode = "";
+
+        [ObservableProperty]
+        private long date = DateTime.Now.Millisecond;
+
         private ContributionService _contributionService;
 
         private IConnectivity _connectivity;
@@ -26,6 +41,18 @@ namespace Genesis.ViewModels
         }
 
         [RelayCommand]
+        public async Task AddContribution()
+        {
+            if(String.IsNullOrEmpty(Name) || String.IsNullOrEmpty(Phone) || String.IsNullOrEmpty(PaymentMode) ||
+                Amount <= 0.00f)
+            {
+                await Shell.Current.DisplayAlert("Check Fields", "Name, Phone and Payment Mode are required. Amount should be above Zero.", "OK");
+                return;
+            }
+        }
+
+
+        [RelayCommand]
         public async Task GetContributions()
         {
             if (_connectivity.NetworkAccess != NetworkAccess.Internet)
@@ -34,10 +61,9 @@ namespace Genesis.ViewModels
                 return;
             }
 
+            IsRefreshing = true;
 
             var data = await _contributionService.getContributions();
-
-            IsRefreshing = true;
 
             data.ForEach( value =>
             {
@@ -50,7 +76,7 @@ namespace Genesis.ViewModels
         }
 
         [RelayCommand]
-        public async Task OnRefresh()
+        public async Task Reload()
         {
             Contributions.Clear();
             await GetContributions();
